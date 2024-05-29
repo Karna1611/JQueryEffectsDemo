@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "jQuery Effects Demo";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .box {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px;
+        }
+
+        .highlight {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery Effects Demo</h1>
+
+        <button id="btnHide">Hide</button>
+        <button id="btnShow">Show</button>
+        <button id="btnFadeIn">Fade In</button>
+        <button id="btnFadeOut">Fade Out</button>
+        <button id="btnSlideUp">Slide Up</button>
+        <button id="btnSlideDown">Slide Down</button>
+        <button id="btnAnimate">Animate</button>
+        <button id="btnToggleClass">Toggle Hightlight</button>
+        <button id="btnAddClass">Add Highlight</button>
+        <button id="btnRemoveClass">Remove Highlight</button>
+        <button id="btnSlideToggle">Slide Toggle</button>
+        <button id="btnFadeToggle">Fade Toggle</button>
+        <button id="btnDelay">Delay</button>
+        <button id="btnStop">Stop</button>
+        <button id="btnChain">Chain</button>
+        <button id="btnHtml">Change HTML</button>
+        <button id="btnAttr">Change Title</button>
+
+        <div id="box" class="box"></div>
+    </div>
+
+    <script>
+        if (typeof jQuery === 'undefined') {
+            console.error('jQuery is not loaded.');
+        } else {
+            console.log("jQuery is loaded:", $.fn.jquery);
+
+            $(document).ready(function () {
+                var toggled = false;
+                $("#btnHide").click(function () {
+                    $("#box").hide();
+                });
+
+                $("#btnShow").click(function () {
+                    $("#box").show();
+                });
+
+                $("#btnFadeIn").click(function () {
+                    $("#box").fadeIn();
+                });
+
+                $("#btnFadeOut").click(function () {
+                    $("#box").fadeOut();
+                });
+
+               
+
+                $("#btnSlideUp").click(function () {
+                    $("#box").slideUp();
+                });
+
+                $("#btnSlideDown").click(function () {
+                    $("#box").slideDown();
+                });
+
+                $("#btnAnimate").click(function () {
+                    if (!toggled) {
+                        $("#box").animate({
+                            left: '250px',
+                            width: "300px",
+                            height: "150px",
+                            opacity: 0.5
+                        }, 2000);
+                    } else {
+                        $("#box").animate({
+                            left: '0px',
+                            width: "200px",
+                            height: "100px",
+                            opacity: 1
+                        }, 2000);
+                    }
+                    toggled = !toggled;
+                });
+
+                $("#btnToggleClass").click(function () {
+                    $("#box").toggleClass("highlight");
+                });
+
+                $("#btnAddClass").click(function () {
+                    $("#box").addClass("highlight");
+                });
+
+                $("#btnRemoveClass").click(function () {
+                    $("#box").removeClass("highlight");
+                });
+
+                $("#btnSlideToggle").click(function () {
+                    $("#box").slideToggle();
+                });
+
+                $("#btnFadeToggle").click(function () {
+                    $("#box").fadeToggle();
+                });
+
+                $("#btnDelay").click(function () {
+                    $("#box").fadeOut().delay(1000).fadeIn();
+                });
+
+                $("#btnStop").click(function () {
+                    $("#box").stop();
+                });
+
+                $("#btnChain").click(function () {
+                    $("#box")
+                        .slideUp()
+                        .delay(500)
+                        .fadeIn()
+                        .delay(500)
+                        .fadeOut()
+                        .delay(500)
+                        .animate({ left: '+=100px' }, 1000);
+                });
+
+                $("#btnHtml").click(function () {
+                    $("#box").html("<strong>New Content</strong>");
+                });
+
+                $("#btnAttr").click(function () {  
+                    $("#box").attr("title", "Hello World!");
+                });
+
+            });
+        }
+    </script>
+</body>
+</html>
